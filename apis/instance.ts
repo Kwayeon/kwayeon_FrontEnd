@@ -20,6 +20,8 @@ instance.interceptors.request.use(
       console.log("Payload:", config.data);
     }
 
+    config.headers["Authorization"] = `Bearer ${localStorage.getItem("KwayeonToken")}`;
+
     return config;
   },
   (error) => {
