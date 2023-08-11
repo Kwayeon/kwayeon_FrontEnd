@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import { useEffect } from "react";
 
 import { QueryClientProvider, useQuery } from "@tanstack/react-query";
@@ -8,12 +9,18 @@ import { client } from "@/apis/instance";
 import { GlobalStyled } from "@/styles/global";
 import { ThemeProvider } from "styled-components";
 import { theme } from "antd";
+
 import SignInForm from "@/components/sign";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={client}>
       <ThemeProvider theme={theme}>
+        <Head>
+          <title>Kwayeon</title>
+        </Head>
+
         <GlobalStyled />
         <CheckLogin children={<Component {...pageProps} />} />
       </ThemeProvider>
@@ -43,5 +50,16 @@ const CheckLogin = ({ children }: { children: React.ReactNode }) => {
   }, [error]);
 
   if (!isRequiredAuth && error) return <SignInForm />;
-  return <>{isLoading || error ? <></> : children}</>;
+  return (
+    <>
+      {isLoading || error ? (
+        <></>
+      ) : (
+        <>
+          <Sidebar />
+          {children}
+        </>
+      )}
+    </>
+  );
 };
