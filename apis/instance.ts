@@ -1,4 +1,5 @@
 import axios from "axios";
+import cookie from "cookiejs";
 import { QueryClient } from "@tanstack/react-query";
 
 const developmentHost = "http://localhost:4000";
@@ -20,7 +21,7 @@ instance.interceptors.request.use(
       console.log("Payload:", config.data);
     }
 
-    config.headers["Authorization"] = `Bearer ${localStorage.getItem("KwayeonToken")}`;
+    config.headers["Authorization"] = `Bearer ${cookie.get("KwayeonToken")}`;
 
     return config;
   },

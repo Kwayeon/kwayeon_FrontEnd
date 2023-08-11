@@ -1,5 +1,3 @@
-import SignInForm from "@/components/sign";
-
-const SignIn = () => <SignInForm />;
+const SignIn = () => <></>;
 
 export default SignIn;
