@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyled = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 
   html,
   body {
+    display: flex;
+
     max-width: 100vw;
     overflow-x: hidden;
     height: 100%;
